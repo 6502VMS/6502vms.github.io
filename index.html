@@ -1,30 +1,139 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<HTML>
-<HEAD>
-<META HTTP-EQUIV="Content-Type" Content="text-html; charset=UTF-8">
-<TITLE>Under Construction</TITLE>
-</HEAD>
-	<BODY BGCOLOR="#FFFFFF">
-	<TABLE>
-	<TR>
-	<TD WIDTH="70" ALIGN="CENTER" VALIGN="TOP">
-	<IMG SRC="pagerror.gif" WIDTH="36" HEIGHT="48">
-	<TD WIDTH="400">
-	
-	<H1 STYLE="font:14pt/16pt Verdana; color:#4E4E4E">https://6502.eu.org - Under Construction</H1>
-	<FONT STYLE="font:9pt/12pt Verdana; color:#000000">
-	The site you were trying to reach does not currently have a default page. It may be in the process of being upgraded.
-	<BR><BR>
-	
-	<HR SIZE="1" COLOR="#0000FF">
-	
-	<BR>
-	Please try this site again later. If you still experience the problem, try contacting the Web site administrator.
-	</FONT>
-	
-	<BR>
-	</TD>
-	</TR>
-	</TABLE>
-	</BODY>
-</HTML>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>6502/VMS</title>
+<meta http-equiv="content-type" content="text/html; charset=<?php echo $charset ?>">
+<meta name="description" content="6502/VMS - Create program in assembly 6502 and run in your browser!">
+<meta name="keywords" content="6502, 65C02, assembler, asm, compiler, assembly, emulator, system, simulator, virtual machine, vm, vms, vss, development, programming">
+<meta name="author" content="Ballagyr">
+<meta name="version" content="V1.5.1671.1">
+<link rel="icon" type="image/x-icon" href="favicon.ico?v=0.2" />
+<link rel="stylesheet" type="text/css" href="system/include/main.css">
+<link rel="stylesheet" type="text/css" href="system/lib/jswm/jswm2.css">
+<link rel="stylesheet" type="text/css" href="system/lib/jswm/gui/win2k/style.css">
+<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.js"></script>
+<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js"></script>
+<script type="text/javascript" src="system/lib/jswm/jswm2.js"></script>
+<script type="text/javascript" src="system/lib/jswm/gui/win2k/config.js"></script>
+<script type="text/javascript" src="system/lib/vsinclude.js"></script>
+
+<script type="text/javascript">
+   var windowManager;
+   $(document).ready(function() {
+   windowManager = new JSWM();
+
+   $('input[type="button"][name="about"]').click(function(){eval('windowManager.openURI(' + $('#about').val() + ');');});
+   $('input[type="button"][name="help"]').click(function(){eval('windowManager.openURI(' + $('#help').val() + ');');});
+  });
+</script>
+
+</head>
+
+<body>
+
+<!-- Clicky Web Analytics -->
+<script src="//static.getclicky.com/js" type="text/javascript"></script>
+<script type="text/javascript">try{ clicky.init(101049751); }catch(e){}</script>
+<!-- Clicky Web Analytics -->
+
+<table width="80%" cellspacing="0" cellpadding="0" align="center">
+  <tr> 
+    <td rowspan="3" width="254"><div id="header">
+	<center><a href="https://6502.eu.org/"><img src="media/images/6502vms.png" border="0" alt="$logo_title" title="$logo_title"></a></center></div></td>
+    <td width="465">&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td width="465" bgcolor="#FFFFFF" height=17 align="right" valign="middle">
+      <!--<code>
+         <input id="about" type="hidden" value="'system/about.html', 415, 328, 'center', 'middle', {title: 'About 6502/VMS', icon: 'media/icons/abouticon16.png'}" size="60" />
+         <input type="button" name="about" value="About" title="About" />&nbsp;
+      </code>-->
+    </td>
+  </tr>
+  <tr> 
+    <td width="465">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2"></td>
+  </tr>
+  <tr>
+    <td></td>
+  </tr>
+</table>
+
+<table width="80%"  border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td>
+<!-- 6502 System Init -->
+<table><tbody><tr>
+<td valign="top" width="50px">
+<input title="Build Program" value="Compile" id="compileButton" onclick="compileCode();" type="button">
+<input title="Run" disabled="disabled" value="Run" id="runButton" onclick="runBinary();" type="button">
+<input title="Reset" value="Reset" id="resetButton" onclick="reset();" type="button">
+<input title="Clear" name="Reset" type="reset" id="Clear" value="Clear">
+<input title="Hexdump" disabled="disabled" value="Hexdump" id="hexdumpButton" onclick="hexdump();" type="button">
+<br><br>
+
+</td>
+<td>
+<table align="center">
+<tbody><tr>
+  <td valign="top">
+    <textarea class="code" id="code" onkeypress="disableButtons();">
+; Example code: random.asm
+; How to use: click in "Compile" and then "Run" or click here for edit and/or paste your 6502 assembly code!
+
+loop: lda $fe       ; A=rnd
+      sta $00       ; ZP(0)=A
+      lda $fe
+      and #$3       ; A=A&3
+      clc           ; Clear carry
+      adc #$2       ; A+=2
+      sta $01       ; ZP(1)=A
+      lda $fe       ; A=rnd
+      ldy #$0       ; Y=0
+      sta ($00),y   ; ZP(0),ZP(1)=y
+      jmp loop
+    </textarea>
+  </td>
+  <td valign="top">
+   <div class="screen" id="screen"></div>
+   <div class="dbugWin">
+	 <font class="debug_mode">Debug mode:</font>
+     <input id="watch" onclick="toggleDebug();" type="button" title="ON/OFF" value="ON/OFF">
+   <div class="minidebugger" id="md">
+      <br>
+      A=$00 X=$00 Y=$00<br>
+      P=$00 SP=$0000 PC=$0000<br>
+   </div>
+    
+    <input disabled="disabled" value="Step" title="Step" id="stepButton" onclick="debugExec();" type="button">
+    <input disabled="disabled" value="Jump to..." title="Jump to..." id="gotoButton" onclick="gotoAddr();" type="button">
+   </div>
+  </td>
+</tr>
+</tbody></table>
+</td>
+</tr></tbody></table>
+<div class="messages" id="messages"></div>
+<!-- 6502CPU -->
+<script type="text/javascript" src="system/kernel/6502.js"></script>
+<!-- 6502 System Exit -->
+    </td>
+  </tr>
+</table>
+<br>
+<div id="footer">
+	<table width="80%" border="0" align="center" cellspacing="0" cellpadding="0">
+    <tr>
+      <td>
+        <br><div align="center"><font face="verdana, arial, dejavu sans, sans" size="2">6502/VMS (Beta) - Copyright 2018-2019 &copy; Ballagyr, All Rights Reserved</font></div>
+        <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101049751ns.gif" /></p></noscript>
+      </td>
+    </tr>
+  </table>
+<script>includeHTML();</script>
+
+</body>
+</html>

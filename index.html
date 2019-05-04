@@ -6,16 +6,15 @@
 <meta name="description" content="6502/VMS - Create program in assembly 6502 and run in your browser!">
 <meta name="keywords" content="6502, 65C02, assembler, asm, compiler, assembly, emulator, system, simulator, virtual machine, vm, vms, vss, development, programming">
 <meta name="author" content="Ballagyr">
-<meta name="version" content="V1.5.1671.1">
 <link rel="icon" type="image/x-icon" href="favicon.ico?v=0.2" />
 <link rel="stylesheet" type="text/css" href="system/include/main.css">
 <link rel="stylesheet" type="text/css" href="system/lib/jswm/jswm2.css">
 <link rel="stylesheet" type="text/css" href="system/lib/jswm/gui/win2k/style.css">
 <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.js"></script>
 <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js"></script>
+<script type="text/javascript" src="system/app_config.js"></script>
 <script type="text/javascript" src="system/lib/jswm/jswm2.js"></script>
 <script type="text/javascript" src="system/lib/jswm/gui/win2k/config.js"></script>
-<script type="text/javascript" src="system/lib/vsinclude.js"></script>
 
 <script type="text/javascript">
    var windowManager;
@@ -39,16 +38,16 @@
 <table width="80%" cellspacing="0" cellpadding="0" align="center">
   <tr> 
     <td rowspan="3" width="254"><div id="header">
-	<center><a href="https://6502.eu.org/"><img src="media/images/6502vms.png" border="0" alt="6502/VMS" title="6502/VMS"></a></center></div></td>
+	<center><a href="https://6502.eu.org/"><img src="media/images/6502vms.png" border="0" alt="6502 Virtual Machine System" title="6502 Virtual Machine System"></a></center></div></td>
     <td width="465">&nbsp;</td>
   </tr>
 
   <tr>
     <td width="465" bgcolor="#FFFFFF" height=17 align="right" valign="middle">
-      <!--<code>
+      <code>
          <input id="about" type="hidden" value="'system/about.html', 415, 328, 'center', 'middle', {title: 'About 6502/VMS', icon: 'media/icons/abouticon16.png'}" size="60" />
          <input type="button" name="about" value="About" title="About" />&nbsp;
-      </code>-->
+      </code>
     </td>
   </tr>
   <tr> 
@@ -125,15 +124,15 @@ loop: lda $fe       ; A=rnd
 </table>
 <br>
 <div id="footer">
-	<table width="80%" border="0" align="center" cellspacing="0" cellpadding="0">
+  <table width="80%" border="0" align="center" cellspacing="0" cellpadding="0">
     <tr>
       <td>
-        <br><div align="center"><font face="verdana, arial, dejavu sans, sans" size="2">6502/VMS (Beta) - Copyright 2018-2019 &copy; Ballagyr, All Rights Reserved</font></div>
+        <br><div align="center"><font face="verdana, arial, dejavu sans, sans" size="2"><span id='app_name'></span> (<span id='stage'></span>) - <span id='copyright'></span>, All Rights Reserved.</font></div>
         <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101049751ns.gif" /></p></noscript>
       </td>
     </tr>
   </table>
-<script>includeHTML();</script>
+</div>
 
 </body>
 </html>

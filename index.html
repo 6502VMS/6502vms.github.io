@@ -22,7 +22,7 @@
    windowManager = new JSWM();
 
    $('input[type="button"][name="about"]').click(function(){eval('windowManager.openURI(' + $('#about').val() + ');');});
-   $('input[type="button"][name="help"]').click(function(){eval('windowManager.openURI(' + $('#help').val() + ');');});
+   $('input[type="button"][name="donate"]').click(function(){eval('windowManager.openURI(' + $('#donate').val() + ');');});
   });
 </script>
 
@@ -44,6 +44,10 @@
 
   <tr>
     <td width="465" bgcolor="#FFFFFF" height=17 align="right" valign="middle">
+	  <code>
+         <input id="donate" type="hidden" value="'system/donate.html', 990, 568, 'center', 'top', {title: '6502/VMS Donate Page', icon: 'media/icons/hlp16.png'}" size="60" />
+         <input type="button" name="donate" value="Donate" title="Donate" />
+      </code>
       <code>
          <input id="about" type="hidden" value="'system/about.html', 415, 328, 'center', 'middle', {title: 'About 6502/VMS', icon: 'media/icons/abouticon16.png'}" size="60" />
          <input type="button" name="about" value="About" title="About" />&nbsp;

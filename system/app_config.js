@@ -5,7 +5,7 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-    $("#app_version").html("1.5.1878.0");
+    $("#app_version").html("1.5.1902.1");
 });
 
 $(document).ready(function() {
@@ -13,11 +13,11 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-    $("#bdate").html("29/02/2020 - 19:06:45");
+    $("#bdate").html("08/09/2021 14:05");
 });
 
 $(document).ready(function() {
-    $("#copyright").html("Copyright 2018-2020 &copy; Ballagyr");
+    $("#copyright").html("Copyright 2018-2021 &copy; Ballagyr");
 });
 
 //####################################################################################################

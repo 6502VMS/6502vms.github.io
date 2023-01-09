@@ -22,7 +22,6 @@
    windowManager = new JSWM();
 
    $('input[type="button"][name="about"]').click(function(){eval('windowManager.openURI(' + $('#about').val() + ');');});
-   $('input[type="button"][name="donate"]').click(function(){eval('windowManager.openURI(' + $('#donate').val() + ');');});
   });
 </script>
 
@@ -44,10 +43,6 @@
 
   <tr>
     <td width="465" bgcolor="#FFFFFF" height=17 align="right" valign="middle">
-	  <code>
-         <input id="donate" type="hidden" value="'system/donate.html', 990, 568, 'center', 'top', {title: '6502/VMS Donate Page', icon: 'media/icons/hlp16.png'}" size="60" />
-         <input type="button" name="donate" value="Donate" title="Donate" />
-      </code>
       <code>
          <input id="about" type="hidden" value="'system/about.html', 415, 328, 'center', 'middle', {title: 'About 6502/VMS', icon: 'media/icons/abouticon16.png'}" size="60" />
          <input type="button" name="about" value="About" title="About" />&nbsp;
@@ -131,7 +126,7 @@ loop: lda $fe       ; A=rnd
   <table width="80%" border="0" align="center" cellspacing="0" cellpadding="0">
     <tr>
       <td>
-        <br><div align="center"><font face="verdana, arial, dejavu sans, sans" size="2"><span id='app_name'></span> (<span id='stage'></span>) - <span id='copyright'></span>, All Rights Reserved.</font></div>
+        <br><div align="center"><font face="verdana, arial, dejavu sans, sans" size="2"><span id='app_name'></span> (<span id='stage'></span>) - Copyright 2018-<script>document.write(new Date().getFullYear())</script> &copy; Ballagyr, All Rights Reserved.</font></div>
       </td>
     </tr>
   </table>
